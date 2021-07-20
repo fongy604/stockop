@@ -44,7 +44,8 @@ DESIRES = {
 
 
 class LateralPlanner():
-  def __init__(self, CP):
+  def __init__(self, CP, use_lanelines=True, wide_camera=False):
+    self.use_lanelines = use_lanelines
     self.LP = LanePlanner()
 
     self.last_cloudlog_t = 0
@@ -78,9 +79,6 @@ class LateralPlanner():
     self.cur_state[0].psi = 0.0
     self.cur_state[0].curvature = 0.0
 
-    self.angle_steers_des = 0.0
-    self.angle_steers_des_mpc = 0.0
-    self.angle_steers_des_time = 0.0
 
   def update(self, sm, CP, VM):
     v_ego = sm['carState'].vEgo
@@ -111,7 +109,7 @@ class LateralPlanner():
       self.lane_change_direction = LaneChangeDirection.left
     elif sm['carState'].rightBlinker:
       self.lane_change_direction = LaneChangeDirection.right
-
+      
     if (not active) or (self.lane_change_timer > LANE_CHANGE_TIME_MAX) or (not self.lane_change_enabled):
       self.lane_change_state = LaneChangeState.off
       self.lane_change_direction = LaneChangeDirection.none

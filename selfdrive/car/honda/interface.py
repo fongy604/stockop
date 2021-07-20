@@ -214,8 +214,17 @@ class CarInterface(CarInterfaceBase):
       else:
         ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.18]]
 
+<<<<<<< HEAD
     elif candidate in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
+<<<<<<< HEAD
+      stop_and_go = False
+=======
       stop_and_go = True
+=======
+    elif candidate == CAR.ACCORD_NIDEC:
+      stop_and_go = False
+>>>>>>> 57b85d695055d180dbbd63fe8c8fadc40fd5397d
+>>>>>>> parent of 76b2e62b0... fixed a merge typo
       ret.mass = 3360. * CV.LB_TO_KG + STD_CARGO_KG
       ret.wheelbase = 2.75
       ret.centerToFront = ret.wheelbase * 0.39

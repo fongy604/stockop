@@ -159,9 +159,10 @@ class CarController():
         self.apply_steer_over_max_counter = 0
     else:
       self.apply_steer_over_max_counter = 0
-  # Send CAN commands.
+    
+    # Send CAN commands.
     can_sends = []
-    print(apply_steer)
+    
     # Send steering command.
     idx = frame % 4
     can_sends.append(hondacan.create_steering_control(self.packer, apply_steer,
