@@ -59,6 +59,8 @@ def get_can_signals(CP):
       ("CRUISE", 10),
       ("POWERTRAIN_DATA", 100),
       ("VSA_STATUS", 50),
+      ("STEER_STATUS", 100),
+      ("STEER_MOTOR_TORQUE", 0), # TODO: not on every car
   ]
 
   if CP.carFingerprint in (CAR.ODYSSEY_CHN, CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
@@ -404,7 +406,7 @@ class CarState(CarStateBase):
 
     # all hondas except CRV, RDX and 2019 Odyssey@China use 0xe4 for steering
     checks = [(0xe4, 100)]
-    
+
     if CP.carFingerprint in [CAR.CRV, CAR.CRV_EU, CAR.ACURA_RDX, CAR.ODYSSEY_CHN]:
       checks = [(0x194, 100)]
 
