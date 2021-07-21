@@ -61,14 +61,14 @@ def get_can_signals(CP):
       ("VSA_STATUS", 50),
   ]
 
-  if CP.carFingerprint in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
-    checks += [
-      ("STEER_STATUS", 0)
-    ]
-  else:
-    checks += [
-      ("STEER_STATUS", 100)
-    ]
+#   if CP.carFingerprint in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
+#     checks += [
+#       ("STEER_STATUS", 0)
+#     ]
+#   else:
+#     checks += [
+#       ("STEER_STATUS", 100)
+#     ]
 
   if CP.carFingerprint in (CAR.ODYSSEY_CHN, CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
     checks += [
