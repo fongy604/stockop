@@ -437,7 +437,7 @@ class CarState(CarStateBase):
     if CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING:
       checks = [("STEER_MOTOR_TORQUE", 100), 
                 ("STEER_STATUS", 100),
-                ("ACC_HUD", 10)
+                ("ACC_HUD", 10),
                 ("BRAKE_COMMAND", 50)]
       signals += [("MOTOR_TORQUE", "STEER_MOTOR_TORQUE", 0),
                   ("STEER_TORQUE_SENSOR", "STEER_STATUS", 0),
