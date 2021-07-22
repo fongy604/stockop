@@ -72,7 +72,7 @@ def get_can_signals(CP):
       ("STEER_MOTOR_TORQUE", 0), # TODO: not on every car
     ]
 
-    
+
   if CP.carFingerprint in (CAR.ODYSSEY_CHN, CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
     checks += [
       ("SCM_FEEDBACK", 25),
@@ -439,9 +439,12 @@ class CarState(CarStateBase):
       ]
     
     if CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING:
-      checks = [("STEER_MOTOR_TORQUE", 100), 
+      checks = [
+                ("STEER_MOTOR_TORQUE", 100), 
                 ("STEER_STATUS", 100),
-                ("BRAKE_COMMAND", 50)]
+                ("ACC_HUD", 10),
+                ("BRAKE_COMMAND", 50)
+               ]
       signals += [("MOTOR_TORQUE", "STEER_MOTOR_TORQUE", 0),
                   ("STEER_TORQUE_SENSOR", "STEER_STATUS", 0),
                   ("STEER_STATUS", "STEER_STATUS", 0)]
