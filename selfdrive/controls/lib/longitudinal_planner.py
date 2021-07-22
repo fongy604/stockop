@@ -19,7 +19,7 @@ from common.op_params import opParams
 
 LON_MPC_STEP = 0.2  # first step is 0.2s
 AWARENESS_DECEL = -0.2     # car smoothly decel at .2m/s^2 when user is distracted
-COAST_SPEED = 10.0 * CV.MPH_TO_MS # brake at COAST_SPEED above set point
+COAST_SPEED = 5.0 * CV.MPH_TO_MS # brake at COAST_SPEED above set point
 
 # lookup tables VS speed to determine min and max accels in cruise
 # make sure these accelerations are smaller than mpc limits

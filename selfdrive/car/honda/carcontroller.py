@@ -88,7 +88,6 @@ class CarController():
     self.packer = CANPacker(dbc_name)
     self.new_radar_config = False
     self.apply_steer_last = 0
-    self.apply_steer_over_max_counter = 0
 
     self.params = CarControllerParams(CP)
 
@@ -133,6 +132,7 @@ class CarController():
 
     # steer torque is converted back to CAN reference (positive when steering right)
     apply_steer = int(interp(-actuators.steer * P.STEER_MAX, P.STEER_LOOKUP_BP, P.STEER_LOOKUP_V))
+
     # steer torque is converted back to CAN reference (positive when steering right)
     if(CS.CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING): #SerialSteering requirs torque blending and limiting before EPS error
       new_steer = int(round(apply_steer))
