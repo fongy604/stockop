@@ -392,8 +392,7 @@ class CarState(CarStateBase):
       self.stock_hud = False
       ret.stockFcw = False
     else:
-      #ret.stockFcw = cp_cam.vl["BRAKE_COMMAND"]["FCW"] != 0
-      ret.stockFcw = False
+      ret.stockFcw = cp_cam.vl["BRAKE_COMMAND"]["FCW"] != 0
       self.stock_hud = cp_cam.vl["ACC_HUD"]
       self.stock_brake = cp_cam.vl["BRAKE_COMMAND"]
 
@@ -445,9 +444,19 @@ class CarState(CarStateBase):
                 ("ACC_HUD", 10),
                 ("BRAKE_COMMAND", 50)
                ]
-      signals += [("MOTOR_TORQUE", "STEER_MOTOR_TORQUE", 0),
+      signals = [
+                  ("MOTOR_TORQUE", "STEER_MOTOR_TORQUE", 0),
                   ("STEER_TORQUE_SENSOR", "STEER_STATUS", 0),
-                  ("STEER_STATUS", "STEER_STATUS", 0)]
+                  ("STEER_STATUS", "STEER_STATUS", 0),
+                  ("COMPUTER_BRAKE", "BRAKE_COMMAND", 0),
+                  ("AEB_REQ_1", "BRAKE_COMMAND", 0),
+                  ("FCW", "BRAKE_COMMAND", 0),
+                  ("CHIME", "BRAKE_COMMAND", 0),
+                  ("FCM_OFF", "ACC_HUD", 0),
+                  ("FCM_OFF_2", "ACC_HUD", 0),
+                  ("FCM_PROBLEM", "ACC_HUD", 0),
+                  ("ICONS", "ACC_HUD", 0)
+                ]
 
     bus_cam = 1 if CP.carFingerprint in HONDA_BOSCH and not CP.isPandaBlackDEPRECATED else 2
     return CANParser(DBC[CP.carFingerprint]['pt'], signals, checks, bus_cam)
