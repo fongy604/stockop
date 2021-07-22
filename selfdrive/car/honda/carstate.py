@@ -61,15 +61,18 @@ def get_can_signals(CP):
       ("VSA_STATUS", 50),
   ]
 
-#   if CP.carFingerprint in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
-#     checks += [
-#       ("STEER_STATUS", 0)
-#     ]
-#   else:
-#     checks += [
-#       ("STEER_STATUS", 100)
-#     ]
+  if CP.carFingerprint not in HONDA_NIDEC_SERIAL_STEERING:
+    checks += [
+      ("STEER_STATUS", 100), #SerialSteering doesn't have this - only on cp_cam
+      ("STEER_MOTOR_TORQUE", 0), # TODO: not on every car
+    ]
+  else:
+    checks += [
+      ("STEER_STATUS", 0), #SerialSteering doesn't have this - only on cp_cam
+      ("STEER_MOTOR_TORQUE", 0), # TODO: not on every car
+    ]
 
+    
   if CP.carFingerprint in (CAR.ODYSSEY_CHN, CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
     checks += [
       ("SCM_FEEDBACK", 25),
@@ -251,6 +254,7 @@ class CarState(CarStateBase):
       steer_status = self.steer_status_values[cp_cam.vl["STEER_STATUS"]['STEER_STATUS']]
     else:
       steer_status = self.steer_status_values[cp.vl["STEER_STATUS"]["STEER_STATUS"]]
+      
     ret.steerError = steer_status not in ['NORMAL', 'NO_TORQUE_ALERT_1', 'NO_TORQUE_ALERT_2', 'LOW_SPEED_LOCKOUT', 'TMP_FAULT']
     # NO_TORQUE_ALERT_2 can be caused by bump OR steering nudge from driver
     self.steer_not_allowed = steer_status not in ['NORMAL', 'NO_TORQUE_ALERT_2']
@@ -437,7 +441,6 @@ class CarState(CarStateBase):
     if CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING:
       checks = [("STEER_MOTOR_TORQUE", 100), 
                 ("STEER_STATUS", 100),
-                ("ACC_HUD", 10),
                 ("BRAKE_COMMAND", 50)]
       signals += [("MOTOR_TORQUE", "STEER_MOTOR_TORQUE", 0),
                   ("STEER_TORQUE_SENSOR", "STEER_STATUS", 0),
