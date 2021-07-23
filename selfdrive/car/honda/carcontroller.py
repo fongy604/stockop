@@ -5,7 +5,7 @@ from selfdrive.controls.lib.drive_helpers import rate_limit
 from common.numpy_fast import clip, interp
 from selfdrive.car import create_gas_command
 from selfdrive.car.honda import hondacan
-from selfdrive.car.honda.values import CruiseButtons, CAR, VISUAL_HUD, HONDA_BOSCH, CarControllerParams, HONDA_NIDEC_SERIAL_STEERING
+from selfdrive.car.honda.values import CruiseButtons, CAR, VISUAL_HUD, HONDA_BOSCH, CarControllerParams, SERIAL_STEERING
 from opendbc.can.packer import CANPacker
 from selfdrive.car import apply_std_steer_torque_limits
 
@@ -134,8 +134,9 @@ class CarController():
     apply_steer = int(interp(-actuators.steer * P.STEER_MAX, P.STEER_LOOKUP_BP, P.STEER_LOOKUP_V))
 
     # steer torque is converted back to CAN reference (positive when steering right)
-    if (CS.CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING): #SerialSteering requirs torque blending and limiting before EPS error
+    if CS.CP.carFingerprint in SERIAL_STEERING:
       new_steer = int(round(apply_steer))
+      #SerialSteering requires torque blending and limiting before EPS error
       apply_steer = apply_std_steer_torque_limits(new_steer, self.apply_steer_last, CS.out.steeringTorque, self.params)
       self.steer_rate_limited = new_steer != apply_steer 
     
