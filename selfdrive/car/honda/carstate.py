@@ -307,7 +307,7 @@ class CarState(CarStateBase):
     else:
       ret.gasPressed = self.pedal_gas > 1e-5
 
-    if self.CP.carFingerprint in (HONDA_NIDEC_SERIAL_STEERING):
+    if self.CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING:
       ret.steeringTorque = cp_cam.vl["STEER_STATUS"]['STEER_TORQUE_SENSOR']
       ret.steeringTorqueEps = cp_cam.vl["STEER_MOTOR_TORQUE"]['MOTOR_TORQUE']
     else:
@@ -315,7 +315,7 @@ class CarState(CarStateBase):
       ret.steeringTorqueEps = cp.vl["STEER_MOTOR_TORQUE"]['MOTOR_TORQUE']   
     ret.steeringPressed = abs(ret.steeringTorque) > STEER_THRESHOLD[self.CP.carFingerprint]
 
-    if self.CP.carFingerprint in (HONDA_NIDEC_SERIAL_STEERING):
+    if self.CP.carFingerprint in HONDA_NIDEC_SERIAL_STEERING:
       self.steer_not_allowed = abs(ret.steeringTorque) > 75
     self.brake_switch = cp.vl["POWERTRAIN_DATA"]['BRAKE_SWITCH'] != 0
 
