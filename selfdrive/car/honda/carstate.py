@@ -189,7 +189,6 @@ class CarState(CarStateBase):
     self.disengageByBrake = False
     self.belowLaneChangeSpeed = True
     self.automaticLaneChange = Params().get('LaneChangeEnabled') == b'1'
-
     self.shifter_values = can_define.dv["GEARBOX"]["GEAR_SHIFTER"]
     self.steer_status_values = defaultdict(lambda: "UNKNOWN", can_define.dv["STEER_STATUS"]["STEER_STATUS"])
 
@@ -314,7 +313,7 @@ class CarState(CarStateBase):
     ret.steeringPressed = abs(ret.steeringTorque) > STEER_THRESHOLD[self.CP.carFingerprint]
 
     if self.CP.carFingerprint in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
-      self.steer_not_allowed = bool(abs(ret.steeringTorque) > 85)
+      self.steer_not_allowed = True if bool(abs(ret.steeringTorque) >= 50) else self.steer_not_allowed
 
     self.brake_switch = cp.vl["POWERTRAIN_DATA"]['BRAKE_SWITCH'] != 0
 
