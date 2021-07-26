@@ -7,7 +7,6 @@ from selfdrive.car import create_gas_command
 from selfdrive.car.honda import hondacan
 from selfdrive.car.honda.values import CruiseButtons, CAR, VISUAL_HUD, HONDA_BOSCH, CarControllerParams, SERIAL_STEERING
 from opendbc.can.packer import CANPacker
-from selfdrive.car import apply_std_steer_torque_limits
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 
@@ -87,7 +86,6 @@ class CarController():
     self.last_pump_ts = 0.
     self.packer = CANPacker(dbc_name)
     self.new_radar_config = False
-    self.apply_steer_last = 0
 
     self.params = CarControllerParams(CP)
 
@@ -132,13 +130,6 @@ class CarController():
 
     # steer torque is converted back to CAN reference (positive when steering right)
     apply_steer = int(interp(-actuators.steer * P.STEER_MAX, P.STEER_LOOKUP_BP, P.STEER_LOOKUP_V))
-
-    # steer torque is converted back to CAN reference (positive when steering right)
-    if CS.CP.carFingerprint in SERIAL_STEERING:
-      new_steer = int(round(apply_steer))
-      #SerialSteering requires torque blending and limiting before EPS error
-      apply_steer = apply_std_steer_torque_limits(new_steer, self.apply_steer_last, CS.out.steeringTorque, self.params)
-      self.steer_rate_limited = new_steer != apply_steer 
     
     # Send CAN commands.
     can_sends = []
@@ -147,8 +138,6 @@ class CarController():
     idx = frame % 4
     can_sends.append(hondacan.create_steering_control(self.packer, apply_steer,
       lkas_active, CS.CP.carFingerprint, idx, CS.CP.isPandaBlackDEPRECATED, CS.CP.openpilotLongitudinalControl))
-    
-    self.apply_steer_last = apply_steer
     
     # Send dashboard UI commands.
     if (frame % 10) == 0:
