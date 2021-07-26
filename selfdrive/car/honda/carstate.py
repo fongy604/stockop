@@ -245,7 +245,7 @@ class CarState(CarStateBase):
     ret.vEgoRaw = (1. - v_weight) * cp.vl["ENGINE_DATA"]['XMISSION_SPEED'] * CV.KPH_TO_MS * speed_factor + v_weight * v_wheel
     ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw)
     
-    self.belowLaneChangeSpeed = ret.vEgo < (45 * CV.MPH_TO_MS)
+    self.belowLaneChangeSpeed = ret.vEgo < (35 * CV.MPH_TO_MS)
 
     if self.CP.carFingerprint in SERIAL_STEERING:
       steer_status = self.steer_status_values[cp_cam.vl["STEER_STATUS"]['STEER_STATUS']]
