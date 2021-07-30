@@ -387,20 +387,6 @@ FW_VERSIONS = {
       b'77959-T2F-A030\x00\x00',
     ],
   }, 
-  CAR.ACCORD_NIDEC_HYBRID: {
-    (Ecu.fwdRadar, 0x18DAB0F1, None): [
-      b'36161-T3Z-A830\x00\x00',
-    ],
-    (Ecu.combinationMeter, 0x18DA60F1, None): [
-      b'78109-T3Z-A220\x00\x00',
-    ],
-    (Ecu.srs, 0x18DA53F1, None): [
-      b'77959-T3Z-A020\x00\x00',
-    ],
-    (Ecu.gateway, 0x18DAEFF1, None): [
-      b'38897-T3W-0130\x00\x00',
-    ],
-  },
   CAR.CIVIC: {
     (Ecu.programmedFuelInjection, 0x18da10f1, None): [
       b'37805-5AA-A640\x00\x00',
