@@ -388,9 +388,8 @@ FW_VERSIONS = {
     ],
   }, 
   CAR.ACCORD_NIDEC_HYBRID: {
-    (Ecu.vsa, 0x18DA28F1, None): [
-      b'57114-T3Z-A040\x00\x00',
-      b'57114-T3Z-A050\x00\x00',
+    (Ecu.gateway, 0x18DAEFF1, None): [
+      b'38897-T3W-0130\x00\x00',
     ],
     (Ecu.fwdRadar, 0x18DAB0F1, None): [
       b'36161-T3Z-A830\x00\x00',
@@ -400,9 +399,6 @@ FW_VERSIONS = {
     ],
     (Ecu.srs, 0x18DA53F1, None): [
       b'77959-T3Z-A020\x00\x00',
-    ],
-    (Ecu.gateway, 0x18DAEFF1, None): [
-      b'38897-T3W-0130\x00\x00',
     ],
   },
   CAR.CIVIC: {
