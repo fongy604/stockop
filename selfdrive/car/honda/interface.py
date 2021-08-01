@@ -217,12 +217,12 @@ class CarInterface(CarInterfaceBase):
 
     elif candidate in (CAR.ACCORD_NIDEC, CAR.ACCORD_NIDEC_HYBRID):
       stop_and_go = False
-      ret.mass = 3360. * CV.LB_TO_KG + STD_CARGO_KG
-      ret.wheelbase = 2.75
+      ret.mass = 3536. * CV.LB_TO_KG + STD_CARGO_KG
+      ret.wheelbase = 2.55
       ret.centerToFront = ret.wheelbase * 0.39
-      ret.steerRatio = 13.6
+      ret.steerRatio = 13.37 # as spec
       ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 238], [0, 238]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.24], [0.09]]      
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.24], [0.1]]      
       tire_stiffness_factor = 0.8467
       ret.longitudinalTuning.kpBP = [0., 5., 35.]
       ret.longitudinalTuning.kpV = [1.2, 0.8, 0.5]
