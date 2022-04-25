@@ -1213,16 +1213,16 @@ FW_VERSIONS = {
     ],
   },
   CAR.ACURA_MDX_HYBRID: {
-    (Ecu.shiftByWire, 0x18DA0BF1, None): [
+    (Ecu.shiftByWire, 0x18da0bf1, None): [
      b'54008-TZ5-A710\x00\x00',
     ],
-    (Ecu.gateway, 0x18DA1EF1, None): [
+    (Ecu.gateway, 0x18da1ef1, None): [
       b'28101-5NB-A660\x00\x00',
     ],
-    (Ecu.hud, 0x416961521, None): [
+    (Ecu.hud, 0x18da53f1, None): [
       b'77959-TZ5-A110\x00\x00',
     ],
-    (Ecu.apgs, 0x18DA60F1, None): [
+    (Ecu.apgs, 0x18da60f1, None): [
       b'78109-TZ5-A610\x00\x00',
     ],
   },
