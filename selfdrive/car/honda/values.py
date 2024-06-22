@@ -193,8 +193,14 @@ class CAR(Platforms):
   )
 
   # Nidec Cars
+  ACURA_MDX = HondaNidecPlatformConfig(
+    [HondaCarDocs("Acura MDX 2016-2019", "AcuraWatch Plus", min_steer_speed=3. * CV.MPH_TO_MS)],
+    CarSpecs(mass=4204 * CV.LB_TO_KG, wheelbase=2.82, steerRatio=15.66, centerToFrontRatio=0.428, tireStiffnessFactor=0.444),  # 15.0 as spec
+    dbc_dict('acura_mdx_2018_hybrid_generated', 'acura_ilx_2016_nidec'),
+    flags=HondaFlags.NIDEC_ALT_SCM_MESSAGES,
+  )
   ACURA_MDX_HYBRID = HondaNidecPlatformConfig(
-    [HondaCarDocs("Acura MDX 2017-218", "AcuraWatch Plus", min_steer_speed=0. * CV.MPH_TO_MS)],
+    [HondaCarDocs("Acura MDX 2016-2019 Hybrid", "AcuraWatch Plus", min_steer_speed=3. * CV.MPH_TO_MS)],
     CarSpecs(mass=4204 * CV.LB_TO_KG, wheelbase=2.82, steerRatio=15.66, centerToFrontRatio=0.428, tireStiffnessFactor=0.444),  # 15.0 as spec
     dbc_dict('acura_mdx_2018_hybrid_generated', 'acura_ilx_2016_nidec'),
     flags=HondaFlags.NIDEC_ALT_SCM_MESSAGES,
@@ -349,6 +355,7 @@ STEER_THRESHOLD = {
   # default is 1200, overrides go here
   CAR.HONDA_ACCORD_4CYL_9TH_GEN: 30,
   CAR.ACURA_MDX_HYBRID: 30,
+  CAR.ACURA_MDX: 30,
   CAR.ACURA_TLX: 30,
   CAR.ACURA_RDX: 400,
   CAR.HONDA_CRV_EU: 400,
@@ -359,6 +366,6 @@ HONDA_NIDEC_ALT_PCM_ACCEL = CAR.with_flags(HondaFlags.NIDEC_ALT_PCM_ACCEL)
 HONDA_NIDEC_ALT_SCM_MESSAGES = CAR.with_flags(HondaFlags.NIDEC_ALT_SCM_MESSAGES)
 HONDA_BOSCH = CAR.with_flags(HondaFlags.BOSCH)
 HONDA_BOSCH_RADARLESS = CAR.with_flags(HondaFlags.BOSCH_RADARLESS)
-SERIAL_STEERING = {CAR.HONDA_ACCORD_4CYL_9TH_GEN, CAR.ACURA_TLX, CAR.ACURA_MDX_HYBRID}
+SERIAL_STEERING = {CAR.HONDA_ACCORD_4CYL_9TH_GEN, CAR.ACURA_TLX, CAR.ACURA_MDX_HYBRID, CAR.ACURA_MDX}
 
 DBC = CAR.create_dbc_map()
