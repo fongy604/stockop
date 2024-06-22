@@ -1113,6 +1113,9 @@ FW_VERSIONS = {
     (Ecu.gateway, 0x18DAEFF1, None): [
       b'38897-TZ5-A110\x00\x00',
     ],
+    (Ecu.programmedFuelInjection, 0X18DA10F1, None): [
+      b'37805-5J6-6910\x00\x00',
+    ],
     (Ecu.fwdRadar, 0x18DAB0F1, None): [
       b'36161-TZ6-A340\x00\x00',
     ],
@@ -1124,6 +1127,9 @@ FW_VERSIONS = {
     ],
     (Ecu.combinationMeter, 0x18DA60F1, None): [
       b'78109-TZ6-A720\x00\x00',
+    ],
+    (Ecu.transmission, 0X18DA1EF1, None): [
+      b'28103-5NC-B210\x00\x00',
     ],
   },
   CAR.ACURA_MDX_HYBRID: {
